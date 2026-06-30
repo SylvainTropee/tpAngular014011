@@ -2,6 +2,7 @@ import {AfterContentChecked, Component, OnChanges, OnInit, SimpleChanges} from '
 import {CarbonFootprintForm} from './carbon-footprint-form/carbon-footprint-form';
 import {CarbonFootprintResult} from './carbon-footprint-result/carbon-footprint-result';
 import {DecimalPipe} from '@angular/common';
+import {CarbonFootprintCompute} from './services/carbon-footprint-compute';
 
 @Component({
   selector: 'app-carbon-footprint',
@@ -20,18 +21,14 @@ export class CarbonFootprint {
 
   public distanceKm: number;
   public consumptionPer100: number;
-  public travels: { distanceKm: number, consumptionPer100: number }[] //any[]
+  public quantityCo2 : number;
+  public travels: any[]
 
-  constructor() {
+  constructor(private cfc : CarbonFootprintCompute) {
     this.distanceKm = 0;
     this.consumptionPer100 = 0;
-    this.travels = [
-      {distanceKm: 50, consumptionPer100: 5},
-      {distanceKm: 150, consumptionPer100: 6},
-      {distanceKm: 250, consumptionPer100: 7},
-      {distanceKm: 350, consumptionPer100: 8},
-      {distanceKm: 450, consumptionPer100: 9}
-    ];
+    this.quantityCo2 = 0;
+    this.travels = this.cfc.getTravels();
     this.calculateDistanceTotalAndConsumptionAverage();
   }
 
@@ -42,17 +39,17 @@ export class CarbonFootprint {
   public addTravel() {
     const distance = Math.round(Math.random() * 1000);
     const consumption = Math.round(Math.random() * 10);
-    this.travels.push({distanceKm: distance, consumptionPer100: consumption});
+    const quantityCo2 = this.cfc.getQuantityCo2ByTravel(distance, consumption);
+    this.cfc.addTravel({distanceKm: distance, consumptionPer100: consumption, quantityCo2 : quantityCo2})
     this.calculateDistanceTotalAndConsumptionAverage();
   }
 
   public calculateDistanceTotalAndConsumptionAverage() {
 
-    this.distanceKm = this.travels.reduce(
-      (acc, travel) => acc + travel.distanceKm, 0);
-
-    this.consumptionPer100 = this.travels.reduce(
-      (acc, travel) => acc + travel.consumptionPer100, 0) / this.travels.length
+    const result = this.cfc.getResumeTravels();
+    this.distanceKm = result.distance;
+    this.consumptionPer100 = result.consumptionPer100;
+    this.quantityCo2 = result.quantityCo2;
   }
 
 

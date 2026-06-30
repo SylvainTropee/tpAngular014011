@@ -1,8 +1,8 @@
-<app-carbon-footprint-form></app-carbon-footprint-form>
 <main>
+  <app-carbon-footprint-form></app-carbon-footprint-form>
   <section>
     <article>
-      <p>Distance : <span
+      <p>Distance: <span
         [class]="{'high-distance' : distanceKm > 500, 'low-distance' : distanceKm < 100}">{{ distanceKm }}</span></p>
 
       <p>Consommation pour 100 km: <span [class.red]="consumptionPer100 > CONSUMPTION_MAX"
@@ -13,7 +13,8 @@
       } @else if (consumptionPer100 < CONSUMPTION_MIN) {
         <p class="green">Félicitations, votre consommation est faible !</p>
       }
-      <p>Consommation totale {{ distanceKm * consumptionPer100 / 100 | number : '1.2-2' }}</p>
+      <p>Consommation totale: {{ distanceKm * consumptionPer100 / 100 | number : '1.2-2' }}</p>
+      <p>Quantité Co2 totale: {{ quantityCo2 | number : '1.2-2' }}</p>
       <button (click)="add100km()">+100Km</button>
     </article>
   </section>

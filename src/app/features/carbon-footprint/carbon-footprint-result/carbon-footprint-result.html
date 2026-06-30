@@ -1,12 +1,13 @@
 
 <section>
-  <button (click)="addTravel()">Générer voyage</button>
   <article>
+    <button (click)="addTravel()">Générer voyage</button>
     <table>
       <thead>
       <tr>
         <th>Distance</th>
         <th>Consommation pour 100 km</th>
+        <th>Quantité Co2</th>
       </tr>
       </thead>
       <tbody>
@@ -14,6 +15,7 @@
           <tr>
             <td>{{ travel.distanceKm }} km</td>
             <td>{{ travel.consumptionPer100 }} L</td>
+            <td>{{ travel.quantityCo2 | number : '1.2-2' }} </td>
           </tr>
         }
       </tbody>
