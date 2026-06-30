@@ -1,0 +1,15 @@
+import {Component} from '@angular/core';
+
+@Component({
+  selector: 'app-header',
+  imports: [],
+  templateUrl: './header.html',
+  styleUrl: './header.css',
+})
+export class Header {
+  public username: string
+
+  constructor() {
+    this.username = 'Michel';
+  }
+}

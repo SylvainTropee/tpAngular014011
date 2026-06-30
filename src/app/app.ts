@@ -1,9 +1,12 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import {Header} from './core/components/header/header';
+import {CarbonFootprint} from './features/carbon-footprint/carbon-footprint';
+import {Footer} from './core/components/footer/footer';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, Header, CarbonFootprint, Footer],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

@@ -1,0 +1,18 @@
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}
+
+.high-distance{
+  color: red;
+  font-weight: bold;
+}
+
+.low-distance{
+  color: green;
+  font-weight: bold;
+}
+

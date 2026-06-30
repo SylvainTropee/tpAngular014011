@@ -1,0 +1,23 @@
+
+<section>
+  <button (click)="addTravel()">Générer voyage</button>
+  <article>
+    <table>
+      <thead>
+      <tr>
+        <th>Distance</th>
+        <th>Consommation pour 100 km</th>
+      </tr>
+      </thead>
+      <tbody>
+        @for(travel of travels(); track $index){
+          <tr>
+            <td>{{ travel.distanceKm }} km</td>
+            <td>{{ travel.consumptionPer100 }} L</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </article>
+</section>
+
