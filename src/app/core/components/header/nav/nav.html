@@ -2,5 +2,6 @@
   <ul>
     <li routerLink="/mon-empreinte-carbone">Mon empreinte carbone</li>
     <li [routerLink]="['/profile', username() ]">Mon profil</li>
+    <li (click)="logout()">Se déconnecter</li>
   </ul>
 </nav>

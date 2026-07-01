@@ -17,7 +17,7 @@ export class Home {
   }
 
   public login(){
-    this.authService.login("Michel")
+    this.authService.login("Rotofil")
     if(this.authService.isLogged()){
       this.router.navigate(['/mon-empreinte-carbone'])
     }

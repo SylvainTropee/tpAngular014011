@@ -1,4 +1,4 @@
-import {Component, input, Input} from '@angular/core';
+import {Component, input, Input, output} from '@angular/core';
 import {RouterLink} from '@angular/router';
 
 @Component({
@@ -10,5 +10,10 @@ import {RouterLink} from '@angular/router';
   styleUrl: './nav.css',
 })
 export class Nav {
-   username = input.required<string>()
+  username = input.required<string>()
+  logoutEvent = output<string>() // new EventEmitter<void>()
+
+  public logout() {
+    this.logoutEvent.emit("coucou tout court");
+  }
 }

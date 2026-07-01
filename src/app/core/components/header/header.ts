@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
 import {Nav} from './nav/nav';
+import {AuthService} from '../../services/auth-service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +14,16 @@ import {Nav} from './nav/nav';
 export class Header {
   public username: string
 
-  constructor() {
-    this.username = 'Michel';
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {
+    this.username = this.authService.getUsername();
   }
+
+  public logout(message : string) {
+    this.authService.logout();
+    this.router.navigateByUrl("/login");
+  }
+
 }
